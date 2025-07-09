@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Prompt Composer</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: auto;
+      padding: 20px;
+      background-color: #f7f7f7;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    label {
+      font-weight: bold;
+    }
+    select, textarea {
+      width: 100%;
+      padding: 8px;
+      margin: 6px 0 20px;
+    }
+    #prompt {
+      background-color: #fff;
+      padding: 15px;
+      border: 1px solid #ccc;
+      white-space: pre-wrap;
+      min-height: 120px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>AI Prompt Composer</h1>
+
+  <form id="promptForm">
+
+    <label>Pose:</label>
+    <select id="pose">
+      <option>Standing confidently with hands in pockets</option>
+      <option>Sitting casually on a wooden chair</option>
+      <option>One knee on the floor, hand on the ground</option>
+      <option>Leaning against a wall with arms crossed</option>
+      <option>Sitting cross-legged on the floor</option>
+      <option>Squatting with forearms on thighs</option>
+      <option>Kneeling with hands on hips</option>
+      <option>Sitting on stool, elbows on knees</option>
+      <option>Sitting on floor, legs stretched, one hand back</option>
+      <option>Walking forward with a strong posture</option>
+    </select>
+
+    <label>Background:</label>
+    <select id="background">
+      <option>Soft off-white studio background</option>
+      <option>Natural outdoor background, not blurred</option>
+      <option>Plain white background</option>
+      <option>Urban street style background</option>
+      <option>Minimalist indoor set</option>
+      <option>Vintage wallpaper backdrop</option>
+      <option>Concrete textured wall</option>
+      <option>Modern office space</option>
+      <option>Grunge artistic backdrop</option>
+      <option>Natural stone wall</option>
+    </select>
+
+    <label>Lighting:</label>
+    <select id="lighting">
+      <option>Natural soft lighting</option>
+      <option>Studio spotlight lighting</option>
+      <option>Evening warm lighting</option>
+      <option>Balanced diffused light</option>
+      <option>Hard backlight with rim highlight</option>
+      <option>Low-key moody lighting</option>
+      <option>Overhead softbox lighting</option>
+      <option>Golden hour natural light</option>
+      <option>Mixed artificial and ambient light</option>
+      <option>Harsh shadows dramatic lighting</option>
+    </select>
+
+    <label>Expression:</label>
+    <select id="expression">
+      <option>Serious</option>
+      <option>Slight smile</option>
+      <option>Neutral</option>
+      <option>Confident smirk</option>
+      <option>Focused gaze</option>
+      <option>Subtle grin</option>
+      <option>Stern look</option>
+      <option>Soft expression</option>
+      <option>Calm and composed</option>
+      <option>Thoughtful stare</option>
+    </select>
+
+    <label>Hair:</label>
+    <select id="hair">
+      <option>Short brown hair</option>
+      <option>Short black hair</option>
+      <option>Messy wavy brown hair</option>
+      <option>Curly dark hair</option>
+      <option>Slicked-back blonde hair</option>
+      <option>Shaved head</option>
+      <option>Side-parted light brown hair</option>
+      <option>Spiky modern haircut</option>
+      <option>Buzz cut</option>
+      <option>Textured crop cut</option>
+    </select>
+
+    <label>Skin Tone:</label>
+    <select id="skin">
+      <option>Light skin</option>
+      <option>Fair skin</option>
+      <option>Medium-light skin</option>
+      <option>Neutral undertone skin</option>
+      <option>Cool undertone fair skin</option>
+      <option>Olive skin</option>
+      <option>Warm beige skin</option>
+      <option>Lightly tanned skin</option>
+      <option>Porcelain skin tone</option>
+      <option>Rosy fair skin</option>
+    </select>
+
+    <label>Pants:</label>
+    <select id="pants">
+      <option>Dark jeans</option>
+      <option>Black chinos</option>
+      <option>Distressed denim</option>
+      <option>Khaki pants</option>
+      <option>Tailored grey trousers</option>
+      <option>Loose-fit streetwear pants</option>
+      <option>Beige joggers</option>
+      <option>Slim-fit navy jeans</option>
+      <option>Classic blue denim</option>
+      <option>Faded black jeans</option>
+    </select>
+
+    <label>Output Prompt:</label>
+    <div id="prompt"></div>
+  </form>
+
+  <script>
+    const base = {
+      age: '23 years old',
+      ethnicity: 'European',
+      gender: 'Male',
+      face: 'Clean-shaven',
+      body: 'Athletic build',
+      shirt: 'Same T-shirt',
+    };
+
+    function updatePrompt() {
+      const pose = document.getElementById('pose').value;
+      const background = document.getElementById('background').value;
+      const lighting = document.getElementById('lighting').value;
+      const expression = document.getElementById('expression').value;
+      const hair = document.getElementById('hair').value;
+      const skin = document.getElementById('skin').value;
+      const pants = document.getElementById('pants').value;
+
+      const fullPrompt = 
+A ${base.age} ${base.ethnicity} ${base.gender} with ${skin}, ${hair}, ${base.face}, and ${base.body}, wearing ${base.shirt} and ${pants}, ${pose}, against a ${background}, under ${lighting}, with a ${expression} expression.;
+
+      document.getElementById('prompt').innerText = fullPrompt;
+    }
+
+    const fields = ['pose', 'background', 'lighting', 'expression', 'hair', 'skin', 'pants'];
+    fields.forEach(id => document.getElementById(id).addEventListener('change', updatePrompt));
+    updatePrompt();
+  </script>
+
+</body>
+</html>
