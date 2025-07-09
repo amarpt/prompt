@@ -143,6 +143,13 @@
       <option>Faded black jeans</option>
     </select>
 
+    <label>Google Branded:</label>
+    <select id="google">
+      <option>Wearing a Google hat</option>
+      <option>Wearing a Google hoodie</option>
+      <option>Not wearing anything Google branded</option>
+    </select>
+
     <label>Output Prompt:</label>
     <div id="prompt"></div>
   </form>
@@ -165,14 +172,15 @@
       const hair = document.getElementById('hair').value;
       const skin = document.getElementById('skin').value;
       const pants = document.getElementById('pants').value;
+      const google = document.getElementById('google').value;
 
       const fullPrompt = 
-`A ${base.age} ${base.ethnicity} ${base.gender} with ${skin}, ${hair}, ${base.face}, and ${base.body}, wearing ${base.shirt} and ${pants}, ${pose}, against a ${background}, under ${lighting}, with a ${expression} expression.`;
+`Create an image of a different model than the attached image, make the image more realistic: a ${base.age} ${base.ethnicity} ${base.gender} with ${skin}, ${hair}, ${base.face}, and ${base.body}, wearing ${base.shirt} and ${pants}, ${google}, ${pose}, against a ${background}, under ${lighting}, with a ${expression} expression.`;
 
       document.getElementById('prompt').innerText = fullPrompt;
     }
 
-    const fields = ['pose', 'background', 'lighting', 'expression', 'hair', 'skin', 'pants'];
+    const fields = ['pose', 'background', 'lighting', 'expression', 'hair', 'skin', 'pants', 'google'];
     fields.forEach(id => document.getElementById(id).addEventListener('change', updatePrompt));
     updatePrompt();
   </script>
